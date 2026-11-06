@@ -1,5 +1,6 @@
-
 import discord
+import random
+import os
 from discord.ext import commands
 
 intents = discord.Intents.default()
@@ -24,5 +25,27 @@ async def multiplies(ctx, left: int, right: int):
     """ multiplies two numbers together."""
     await ctx.send(left * right)
 
+@bot.command()
+async def divides(ctx, left: int, right: int):
+    """ divides two numbers together."""
+    await ctx.send(left / right)
+
+@bot.command()
+async def meme_aleatorio(ctx):
+    imagens = os.listdir("images") 
+
+    img_name = random.choice(imagens)
+    with open(os.path.join("images", img_name), "rb") as f:
+        picture = discord.File(f)
+        await ctx.send(file=picture)
+
+@bot.command()
+async def subtrat(ctx, left: int, right: int):
+    """ subtract  two numbers together."""
+    await ctx.send(left - right)
+
+
 
 bot.run("")
+
+
